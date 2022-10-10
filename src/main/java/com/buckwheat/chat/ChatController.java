@@ -14,14 +14,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatController {
 	@GetMapping("/login")
 	public String login() {
-		log.debug("로그인");
+		log.debug(TeamColor.CSK + "@GetMapping 로그인");
 		
 		return "login";
 	}
 	
 	@PostMapping("/login")
 	public String login(@RequestParam String name, HttpSession session) {
-		log.debug("로그인");
+		log.debug(TeamColor.CSK + name + " 로그인");
 		session.setAttribute("login", name);
 		
 		return "redirect:/chat";
@@ -29,7 +29,7 @@ public class ChatController {
 	
 	@GetMapping("/chat")
 	public String chat(HttpSession session) {
-		log.debug("채팅 시작");
+		log.debug(TeamColor.CSK + " 채팅 시작");
 		return "chat";
 	}
 }

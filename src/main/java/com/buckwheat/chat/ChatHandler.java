@@ -18,7 +18,7 @@ public class ChatHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage msg) throws Exception {
 		String payload = msg.getPayload(); // 전송되는 데이터. header, meta data를 제외한 순수 데이터
-		log.debug("payload: " + payload);
+		log.debug(TeamColor.CSK + "payload: " + payload);
 		
 		for(WebSocketSession wss : list) {
 			wss.sendMessage(msg);
@@ -29,14 +29,14 @@ public class ChatHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
 		list.add(session); // 리스트에 세션을 담음
-		log.debug(session + " 클라이언트 접속");
+		log.debug(TeamColor.CSK + session + " 클라이언트 접속");
 	}
 	
 	// 클라이언트가 나갔을 시
 	@Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         list.remove(session); // 리스트에서 제거
-		log.debug(session + " 클라이언트 접속 해제");
+		log.debug(TeamColor.CSK + session + " 클라이언트 접속 해제");
     }
 
 }

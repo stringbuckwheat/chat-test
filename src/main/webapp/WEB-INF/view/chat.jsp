@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>chat</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 <body>
 	<input type="hidden" value="${sessionScope.login}" id="login">
@@ -30,10 +32,15 @@
 		console.log("username: " + username);
 		
 		const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+		console.log("websocket");
+		console.log(websocket);
 		// console.log(websocket);
 		
-		// let sockJs = new SockJS("http://localhost:8080/ws/chat");
+		let sockJs = new SockJS("http://localhost:8080/ws/chat");
 		// var sockJs = new SockJS("http://localhost:8080/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+		console.log("sockJs");
+		console.log(sockJs);
+		
 		
 		websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
